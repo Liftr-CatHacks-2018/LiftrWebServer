@@ -4,6 +4,10 @@ $username = "liftrAdmin";
 $password = "Vw5MxF2X6vvJ";
 $dbname = "LiftData";
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
