@@ -1,0 +1,33 @@
+<?php
+$servername = "liftrdb2.cdviygl7ogql.us-east-2.rds.amazonaws.com";
+$username = "liftrAdmin";
+$password = "Vw5MxF2X6vvJ";
+$dbname = "LiftData";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM RawLiftScores";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "                <tr>\n";
+        echo "                  <td>" . $row["row_names"] . "</td>\n";
+        echo "                  <td>" . $row["AquisitionTime"] . "</td>\n";
+        echo "                  <td>" . $row["LifterID"] . "</td>\n";
+        echo "                  <td>" . $row["Score"] . "</td>\n";
+        echo "                </tr>\n";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
